@@ -45,6 +45,8 @@ userSchema.pre("save",async function(next){
     }
 })
 
+
+// instance creation for generating token
 userSchema.methods.generateToken = async function () {
     try {
         return jwt.sign({
