@@ -45,6 +45,14 @@ userSchema.pre("save",async function(next){
     }
 })
 
+// compare the password
+
+userSchema.methods.comparePassword = async function (password) {
+    return bcrypt.compare(password, this.password);
+}
+
+
+
 
 // instance creation for generating token
 userSchema.methods.generateToken = async function () {
