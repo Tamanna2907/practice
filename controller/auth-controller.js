@@ -24,8 +24,12 @@ const register =async(req,res)=>{
 
         res.status(201).json({msg:'registration successful', token: await userCreated.generateToken(), })    
     } catch (error) {
-        console.log(error)
-        res.status(500).json("internal server error")
+        const status=422;
+        const message= error.errors[0].message;
+        const err= {
+            status,message
+        }
+        next(err)
     }
 }
 
@@ -49,8 +53,13 @@ const login= async (req, res)=>{
         }
         
     } catch (error) {
-        console.log(error)
-        res.status(500).json("internal server error")
+        const status=422;
+        const message= error.errors[0].message;
+        const err= {
+            status,message
+        }
+        next(err)
+      
     }
 }
 
